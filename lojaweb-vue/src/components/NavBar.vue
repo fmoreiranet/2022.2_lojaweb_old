@@ -1,21 +1,24 @@
 <script>
-import { RouterLink, useRoute } from 'vue-router';
 import { User } from "@/model/User";
-import router from "@/router";
-
-//let usuario = new User();
 
 export default {
     name: 'NavBar',
     data() {
         return {
-            usuario: new User()
+            usuario: new User(),
+            datahoje: new Date()
         }
     },
     methods: {
         getUser() {
             let user = JSON.parse(sessionStorage.getItem("user"))
-            this.usuario = (typeof user == 'undefined' || user == null) ? null : user;
+            //this.usuario = (typeof user == 'undefined' || user == null) ? null : user;
+            //if (typeof user == 'undefined' || user == null) {
+            if (!user) {
+                this.usuario = null;
+            } else {
+                this.usuario = user;
+            }
         },
         logoff() {
             sessionStorage.clear();
@@ -33,7 +36,8 @@ export default {
 <template>
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container">
-            <RouterLink class="navbar-brand" to="/">Loja WEB</RouterLink>
+            <RouterLink class="navbar-brand" to="/">Loja WEB
+            </RouterLink>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -90,7 +94,8 @@ export default {
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                     <li class="nav-item">
-                        <RouterLink class="nav-link" aria-current="page" to="/user/add">{{ usuario.nome }}
+                        <RouterLink class="nav-link" aria-current="page" to="/user/perfil">
+                            {{ usuario.nome }}
                         </RouterLink>
                     </li>
                     <li class="nav-item pointer">

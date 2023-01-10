@@ -1,4 +1,4 @@
-export class Endereco {
+export class Address {
     constructor(
         cep = "",
         logradouro = "",

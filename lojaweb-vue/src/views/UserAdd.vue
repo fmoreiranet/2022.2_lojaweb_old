@@ -16,13 +16,17 @@ export default {
         userAddOld() {
             userService.addOld(this.user);
         },
+
         userAdd() {
+            // starLoading -> modal
             userService.add(this.user)
                 .then(res => {
                     console.log(res.data);
                     alert("Cadastro!");
+                    //endLoading -> modal
                     //router.push("/");
-                }).catch(error => {
+                })
+                .catch(error => {
                     alert(error.data);
                 });
         },
@@ -48,7 +52,6 @@ export default {
                 v-model="user.nome" />
             <small id="helpName" class="text-muted"></small>
         </div>
-
         <div class="form-group">
             <label for="">E-mail</label>
             <input type="email" name="email" class="form-control" placeholder="" aria-describedby="helpEmail"
@@ -100,6 +103,7 @@ export default {
             Mostrar
         </button>
     </section> -->
+
 </template>
 
 <style scoped>
